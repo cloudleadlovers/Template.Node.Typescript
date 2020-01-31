@@ -1,0 +1,10 @@
+#! /bin/sh
+
+# Este hook faz com que antes de realizar o commit, toda vez
+# seja feito um ~Pull~, caso a branch exista remotamente
+branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+if [[ `git branch -r | grep $branch` ]];
+then
+    ok=`git pull`
+fi
+exit 0

@@ -1,0 +1,19 @@
+# Comment to reply with
+requestInfoReplyComment: >
+  MAIS INFO -> Lembre-se de adicionar informações aqui na PR ou na tarefa origem no Clickup
+
+# Label to be added to Issues and Pull Requests with insufficient information given
+requestInfoLabelToAdd: 🚧 Needs more info
+
+# Only warn about insufficient information on these events type
+# Keys must be lowercase. Valid values are 'issue' and 'pullRequest'
+requestInfoOn:
+  pullRequest: true
+
+# List of people whose Issues/PRs will not be commented on keys must be GitHub usernames
+requestInfoUserstoExclude:
+  - cloudleadlovers
+  - augustorcn
+  - dhferraz
+  - F3lip3
+  - robsonferrll

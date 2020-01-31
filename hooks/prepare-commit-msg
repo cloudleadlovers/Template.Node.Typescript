@@ -1,0 +1,20 @@
+#! /bin/sh
+
+# Este hook previne que usuarios tentem fazer o merge da branch 'dev' em direcao
+# outra branch.
+
+merge_msg=".git/MERGE_MSG"
+
+if [ ! -f "$merge_msg" ]
+then
+  exit 0
+else
+  merge_msg=`cat .git/MERGE_MSG`
+  branch_from=$(echo $merge_msg| cut -d"'" -f 2)
+
+  if [ $branch_from = 'dev'  ] || [ $branch_from = 'origin/dev'  ]
+  then
+    echo "Merge's a partir da branch 'dev' são proibidos pois ela contém código de diversas outras branches (Features/Improvements) e podem conter erros."
+    exit 1
+  fi
+fi

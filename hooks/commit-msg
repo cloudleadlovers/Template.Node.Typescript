@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Este script previne que commits sejam feitos sem iniciar a mensagem com #idClickup
+test "" = "$(grep '^#[[:alnum:]]\{4,6\}' "$1")" && {
+   echo >&2 "A mensagem de commit deve iniciar com o caracter # seguido da id da tarefa no Clickup! Exemplo '#a31wd3 - Correção de x com y'"
+   exit 1
+}
+
+current_branch=`git branch | grep \* | cut -d ' ' -f2`
+if [[ $current_branch == *"#"* ]]; then
+    echo "# não é permitido no nome da branch. Crie uma nova branch a partir da atual e faça o commit delas nesta nova branch"
+    exit 1
+fi
+if [[ $current_branch != *"master"* ]] && [[ $current_branch != *"dev"* ]] && [[ $current_branch != *"hotfix/"* ]] && [[ $current_branch != *"improvement/"* ]] && [[ $current_branch != *"feature/"* ]] && [[ $current_branch != *"sprint/"* ]]; then
+    echo "A branch atual está fora dos padrões: $current_branch . Nomes permitidos: master dev   hotfix/*   improvement/*   feature/*   sprint/*"
+    exit 1
+fi
+
+# Este hook faz com que antes de realizar o commit, toda vez
+# seja feito um ~Pull~, caso a branch exista remotamente
+branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+if [[ `git branch -r | grep $branch` ]];
+then
+    ok=`git pull`
+fi
+exit 0
