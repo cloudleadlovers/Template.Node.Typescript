@@ -1,6 +1,19 @@
 # Node with Typescript
 
-Template de uma aplicação em node com typescript
+Node with typescript app template.
+
+Resources & Packages:
+- Node
+- TypeScript
+- Nodemon
+- Sucrase
+- Express
+- Cors
+- Jest
+- Eslint
+- Commit Lint
+- Commitizen
+- Husky
 
 ## Commit Lint + Commitizen
 
