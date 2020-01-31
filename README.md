@@ -1,2 +1,2 @@
 # Node with Typescript template
-Template de aplicação base com node e typescript
+Template de uma aplicação em node com typescript
