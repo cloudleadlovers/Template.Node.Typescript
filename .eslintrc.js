@@ -21,21 +21,38 @@ module.exports = {
     project: './tsconfig.json'
   },
   plugins: [
+    'import',
     '@typescript-eslint',
-    'prettier'
+    'prettier',
+    'eslint-plugin-import-helpers'
   ],
   rules: {
     'prettier/prettier': 'error',
     'no-underscore-dangle': 'off',
     'class-methods-use-this': 'off',
+    'lines-between-class-members': 'off',
     'no-await-in-loop': 'off',
     'no-console': ['error', { allow: ['error', 'info'] }],
-    'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
       {
         'ts': 'never'
+      }
+    ],
+    'import/no-unresolved': 'error',
+    'import/prefer-default-export': 'off',
+    'import-helpers/order-imports': [
+      'warn',
+      {
+        newlinesBetween: 'always',
+        groups: ['module', ['parent', 'sibling', 'index', '/~/', '/@/']],
+        alphabetize: { order: 'asc', ignoreCase: true }
+      }
+    ],
+    '@typescript-eslint/interface-name-prefix': [
+      'error', {
+        'prefixWithI': 'always'
       }
     ]
   },
@@ -53,6 +70,9 @@ module.exports = {
       '@typescript-eslint/parser': ['.ts', '.js']
     },
     'import/resolver': {
+      node: {
+        extensions: ['.js', '.ts']
+      },
       typescript: {
         alwaysTryTypes: true
       }
