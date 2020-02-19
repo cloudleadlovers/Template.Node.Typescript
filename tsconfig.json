@@ -4,11 +4,11 @@
     "module": "commonjs",
     "allowJs": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "strict": true,
     "strictPropertyInitialization": false,
     "moduleResolution": "node",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -17,9 +17,9 @@
     "noImplicitAny": true,
     "typeRoots": ["node_modules/@types"],
     "paths": {
-      "~/*": ["*"]
+      "~/*": ["src/*"]
     }
   },
-  "include": ["src", "__tests__"],
+  "include": ["src/**/*.ts", "__tests__/**/*.spec.ts"],
   "exclude": ["node_modules"]
 }
